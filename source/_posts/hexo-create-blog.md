@@ -7,9 +7,9 @@ categories:
 - Hexo
 ---
 
-本文主要介绍了在WINDOWS下利用Git Pages和Hexo免费搭建个人博客的方法。
+本文主要介绍了在Windows下利用Git Pages和Hexo免费搭建个人博客的方法。
 
-写博客的原因主要有感于[为什么要写博客](https://zhuanlan.zhihu.com/cnfeat/19743861) 选择Hexo的原因主要是因为[关于博客技术的选型](https://www.zhihu.com/question/21981094]
+写博客的原因主要有感于[为什么要写博客](https://zhuanlan.zhihu.com/cnfeat/19743861);选择Hexo主要参考了[关于博客技术的选型](https://www.zhihu.com/question/21981094)
 
 千里之行，始于足下。与其感慨路难行，不如马上出发！
 <!--more-->
@@ -72,8 +72,6 @@ hexo server  (OR hexo s)
 vther  | 博客发布项目            | 是
 blog   | 用来存放Hexo的配置和源码| 否
 
-**注意：**使用自己的用户名[vther]作为博客的发布项目可以使访问域名更简洁
-
 创建完成后，可以本地clone下自己的项目，并且随便修改下再提交，让git保存好账号密码。或者配置SSH公钥。
 
 ### 2，修改Hexo的deploy配置
@@ -89,7 +87,8 @@ deploy:
 ```bash
 hexo deploy (OR hexo d)
 ```
-最后就可以使用https://vther.coding.me/来访问自己的博客了！
+最后可以使用 **https://vther.coding.me** 来访问自己的博客了！
+**注意：**使用自己的用户名[vther]作为博客的发布项目可以使访问域名更简洁。*如果不这么做，需要用这个URL才能访问：https://{用户名}.coding.me/{项目名}*
 
 ----------
 
