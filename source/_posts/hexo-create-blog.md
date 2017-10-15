@@ -15,7 +15,7 @@ categories:
 <!--more-->
 
 ----------
-## **本地安装Hexo**
+# **本地安装Hexo**
 
 ### 1，安装GIT && 安装Nodejs
 [安装步骤参考](https://hexo.io/zh-cn/docs/index.html)
@@ -60,7 +60,7 @@ hexo server  (OR hexo s)
 > 更换主题：[hexo-theme-icarus](https://github.com/ppoffice/hexo-theme-icarus) , [hexo-theme-spfk](https://github.com/luuman/hexo-theme-spfk)
 
 ----------
-## **发布博客到Github等网站**
+# **发布博客到Github等网站**
 
 由于没有代理，访问Github比较卡，所以使用了coding.net作为博客的托管
 ### 1，在coding.net注册并创建项目
@@ -94,9 +94,9 @@ hexo deploy (OR hexo d)
 
 
 
-### **其他**
+# **其他**
 
-#### **常见的HEXO配置错误**
+### **常见的HEXO配置错误**
 
 -   搭建 hexo，在执行 hexo deploy 后,出现 [**ERROR** Deployer not found] 的错误。 打开package.json发现，没有安装hexo-deployer-git模块，使用以下[命令](https://hexo.io/zh-cn/docs/deployment.html)安装：
 
@@ -104,13 +104,13 @@ hexo deploy (OR hexo d)
 npm install hexo-deployer-git --save 
 ```
 
-#### **关于Markdown **
+### **关于Markdown **
 - [语法介绍](http://www.appinn.com/markdown/)
 - [在线编辑-作业部落](https://www.zybuluo.com/mdeditor)
 - [在线编辑-小书匠 - 有很多快捷按钮很方便入门](http://markdown.xiaoshujiang.com/)
 - [在线编辑-Cmd Markdown - 有很多主题](http://marxi.co/)
 
 
-#### **参考**
-[Github Pages + Hexo搭建博客](http://fanzhenyu.me/categories/Hexo/)
-[如何搭建一个独立博客——简明 GitHub Pages与 jekyll 教程](http://www.cnfeat.com/blog/2014/05/10/how-to-build-a-blog/)
+### **参考**
+- [Github Pages + Hexo搭建博客](http://fanzhenyu.me/categories/Hexo/)
+- [如何搭建一个独立博客——简明 GitHub Pages与 jekyll 教程](http://www.cnfeat.com/blog/2014/05/10/how-to-build-a-blog/)
