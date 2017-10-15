@@ -34,7 +34,6 @@ hexo init
 > INFO  Start blogging with Hexo!
 
 ### 3，生成博客
-在E盘新建目录，并执行命令：
 ```bash
 hexo generate (OR hexo g)
 ```
