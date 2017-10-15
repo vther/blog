@@ -1,6 +1,7 @@
 ---
 title: Hello World
 date: 2017年10月15日18:11:59
+thumbnail: https://hexo.io/logo.svg
 tags: 
 - Hexo
 categories: 

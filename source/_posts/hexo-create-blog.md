@@ -1,6 +1,7 @@
 ---
 title: 如何使用Hexo在Github上搭建个人博客
 date: 2017年10月15日18:11:59
+thumbnail: https://hexo.io/logo.svg
 tags: 
 - Hexo
 categories: 
