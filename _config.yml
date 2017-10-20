@@ -76,3 +76,4 @@ deploy:
   type: git
   repo:
       coding: https://git.coding.net/vther/vther.git,master
+      github: https://github.com/vther/vther.github.io.git,master

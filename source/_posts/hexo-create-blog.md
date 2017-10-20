@@ -106,6 +106,7 @@ npm install hexo-deployer-git --save
 
 ### **关于Markdown **
 - [语法介绍](http://www.appinn.com/markdown/)
+- [跨平台免费编辑器typora-功能很强](https://www.typora.io/)
 - [在线编辑-作业部落](https://www.zybuluo.com/mdeditor)
 - [在线编辑-小书匠 - 有很多快捷按钮很方便入门](http://markdown.xiaoshujiang.com/)
 - [在线编辑-Cmd Markdown - 有很多主题](http://marxi.co/)
