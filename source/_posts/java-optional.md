@@ -1,23 +1,25 @@
 ---
-title: 如何使用Hexo在Github上搭建个人博客
-date: 2017年10月15日18:11:59
+title: Java8 之 Optional
+date: 2017年10月25日21:19:59
 thumbnail: http://www.runoob.com/wp-content/uploads/2013/12/java.jpg
 tags: 
-- Java optional JDK java8
+- optional
+- JDK
+- Java8
 categories: 
 - Java
 ---
 在Java程序开发中大家经常会使用null，但是使用null会带来理论和实际操作上的种种问题。
- 它是错误之源。
+>  它是错误之源
 NullPointerException是目前Java程序开发中最典型的异常。
- 它会使你的代码膨胀。
+>  它会使你的代码膨胀。
 它让你的代码充斥着深度嵌套的null检查，代码的可读性糟糕透顶。
- 它自身是毫无意义的。
+>  它自身是毫无意义的。
 null自身没有任何的语义，尤其是，它代表的是在静态类型语言中以一种错误的方式对
 缺失变量值的建模。
- 它破坏了Java的哲学。
+>  它破坏了Java的哲学。
 Java一直试图避免让程序员意识到指针的存在，唯一的例外是：null指针。
- 它在Java的类型系统上开了个口子。
+>  它在Java的类型系统上开了个口子。
 null并不属于任何类型，这意味着它可以被赋值给任意引用类型的变量。这会导致问题，
 原因是当这个变量被传递到系统中的另一个部分后，你将无法获知这个null变量最初的
 赋值到底是什么类型。
