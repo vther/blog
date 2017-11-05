@@ -63,7 +63,7 @@ categories:
 > $&nbsp;&nbsp;表示以xxx结尾
 
 分流效果演示：启动了两台Tomcat，其中8080端口作为生产环境，8081作为灰度环境，为了加以区分，我在灰度环境的index.jsp页面上加上了`This is dark launch page!`。使用`Postman`来模拟请求，大家都知道POSTMAN能够添加Header，但是却不能修改Cookie，这时候需要`Postman Interceptor`来救场了。可以看到下载并启用Postman Interceptor插件以后，在Header中直接编辑Cookie属性，即可修改请求的Cookie。最终效果如下图：
-
+![使用postman-interceptor修改cookie](/imgs/nginx-dark-launch-postman-interceptor.png)
 可以看到带有灰度Cookie的分流到了灰度环境。
 另外为了调试方便，可以直接access.log加上`$http_cookie`或`$cookie_dark`。
 ```nginx
@@ -204,4 +204,5 @@ dark=true - 127.0.0.1 - - [04/Nov/2017:14:08:46 +0800] "GET / HTTP/1.1" 200 1145
     }
    
 ```
-验证：访问http://localhost/someurl-dark访问灰度节；访问http://localhost/someurl访问生产节点。
+访问http://localhost/someurl-dark 访问的是灰度节点；访问http://localhost/someurl 访问的是生产节点。
+访问验证正如预期！
