@@ -10,7 +10,7 @@ categories:
  - Nginx
 ---
 
-**灰度发布（又名金丝雀发布，英文一般称为[Dark launch](https://www.quora.com/What-is-a-dark-launch-in-terms-of-continuous-delivery-of-software)）是为了能够让用户逐步过渡到新功能一种发布方式。** 一般是产品上线一个功能，希望在线上可以进行A/B testing，即让一部分用户继续用产品特性A，一部分用户开始用产品特性B，如果用户对B没有什么反对意见，那么逐步扩大范围，把所有用户都迁移到B上面来。
+**灰度发布（又名金丝雀发布，英文一般称为GrayRelease或[Dark launch](https://www.quora.com/What-is-a-dark-launch-in-terms-of-continuous-delivery-of-software)）是为了能够让用户逐步过渡到新功能一种发布方式。** 一般是产品上线一个功能，希望在线上可以进行A/B testing，即让一部分用户继续用产品特性A，一部分用户开始用产品特性B，如果用户对B没有什么反对意见，那么逐步扩大范围，把所有用户都迁移到B上面来。
 
 **优点**
  - 灰度发布可以保证整体系统的稳定，在初始灰度的时候就可以发现、调整问题，以保证其影响度。
@@ -86,10 +86,10 @@ dark=true - 127.0.0.1 - - [04/Nov/2017:14:08:46 +0800] "GET / HTTP/1.1" 200 1145
 
 这里为了演示[ngx_http_map_module](http://nginx.org/en/docs/http/ngx_http_map_module.html)的用法，使用了map替代了上面的set if判断方法。
 ```nginx
-	map $http_dark $group {
-		~*true$ dark; 
-		default normal;
-	}
+    map $http_dark $group {
+        ~*true$ dark; 
+        default normal;
+    }
     server {
         listen       80;
         server_name  localhost;
@@ -181,7 +181,7 @@ dark=true - 127.0.0.1 - - [04/Nov/2017:14:08:46 +0800] "GET / HTTP/1.1" 200 1145
 下面再介绍下URL分流，例如以下场景：如果url以dark结尾，则分流到灰度。本文继续使用一个新的模块[ngx.balancer](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/balancer.md)来做负载均衡。
 ```nginx
     upstream balancer {
-        server 0.0.0.1;   # 这里写一个不存在的IP，作为站位填充
+        server 0.0.0.1;   # 这里写一个不存在的IP，作为占位填充
 
         balancer_by_lua_block {
             local balancer = require "ngx.balancer"
@@ -189,11 +189,11 @@ dark=true - 127.0.0.1 - - [04/Nov/2017:14:08:46 +0800] "GET / HTTP/1.1" 200 1145
             -- 下面一般是根据某些参数来计算要分流到哪里
             local host = "127.0.0.1"
             local port = 8080
-			local m, err = ngx.re.match(ngx.var.uri, "dark$")
-			if m then
-				port = 8081
-			end
-			local ok, err = balancer.set_current_peer(host, port)
+            local m, err = ngx.re.match(ngx.var.uri, "dark$")
+            if m then
+                port = 8081
+            end
+            local ok, err = balancer.set_current_peer(host, port)
             if not ok then
                 ngx.log(ngx.ERR, "failed to set the current peer: ", err)
                 return ngx.exit(500)
