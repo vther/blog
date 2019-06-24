@@ -1,3 +1,21 @@
+#### 启动arthas-boot
+
+在新的`Terminal 2`里，下载`arthas-boot.jar`，再用`java -jar`命令启动：
+
+```
+wget https://alibaba.github.io/arthas/arthas-boot.jar java -jar arthas-boot.jar --target-ip 0.0.0.0
+```
+
+`arthas-boot`是`Arthas`的启动程序，它启动后，会列出所有的Java进程，用户可以选择需要诊断的目标进程。
+
+选择第一个进程，输入 `1` ，再`Enter/回车`：
+
+Attach成功之后，会打印Arthas LOGO。输入 `help` 可以获取到更多的帮助信息。
+
+
+
+#### 查看JVM信息
+
 下面介绍Arthas里查看`JVM`信息的命令。
 
 ### sysprop
@@ -24,7 +42,7 @@
 
 输入 `Q` 或者 `Ctrl+C` 可以退出dashboard命令。
 
-#### Thread
+#### thread
 
 `thread 1` 命令会打印线程ID 1的栈。
 
@@ -37,27 +55,7 @@ $ thread 1 | grep 'main('
     at demo.MathGame.main(MathGame.java:17)
 ```
 
-
-
-#### Sc
-
-可以通过 `sc` 命令来查找JVM里已加载的类：
-
-```
-sc -d *MathGame
-```
-
-#### Jad
-
-可以通过 `jad` 命令来反编译代码：
-
-```
-jad demo.MathGame
-```
-
-
-
-#### Watch
+#### watch
 
 通过`watch`命令可以查看函数的参数/返回值/异常信息。
 
@@ -66,28 +64,6 @@ watch demo.MathGame primeFactors returnObj
 ```
 
 输入 `Q` 或者 `Ctrl+C` 退出watch命令。
-
-
-
-#### Exit/Shutdown
-
-## 退出Arthas
-
-用 `exit` 或者 `quit` 命令可以退出Arthas。
-
-退出Arthas之后，还可以再次用 `java -jar arthas-boot.jar` 来连接。
-
-## 彻底退出Arthas
-
-`exit/quit`命令只是退出当前session，arthas server还在目标进程中运行。
-
-想完全退出Arthas，可以执行 `shutdown` 命令。
-
-
-
-#### Tips
-
-为了更好使用Arthas，下面先介绍Arthas里的一些使用技巧。
 
 ### help
 
@@ -181,9 +157,7 @@ sm -d java.math.RoundingMode
 sm java.math.RoundingMode <init>
 ```
 
-
-
-#### Jad
+#### jad
 
 可以通过 `jad` 命令来反编译代码：
 
@@ -197,7 +171,7 @@ jad com.example.demo.arthas.user.UserController
 jad --source-only com.example.demo.arthas.user.UserController
 ```
 
-#### Ognl
+#### ognl
 
 在Arthas里，有一个单独的`ognl`命令，可以动态执行代码。
 
@@ -242,6 +216,22 @@ $ ognl '#value1=@System@getProperty("java.home"), #value2=@System@getProperty("j
 
 - OGNL特殊用法请参考：<https://github.com/alibaba/arthas/issues/71>
 - OGNL表达式官方指南：<https://commons.apache.org/proper/commons-ognl/language-guide.html>
+
+
+
+#### Exit/Shutdown
+
+## 退出Arthas
+
+用 `exit` 或者 `quit` 命令可以退出Arthas。
+
+退出Arthas之后，还可以再次用 `java -jar arthas-boot.jar` 来连接。
+
+## 彻底退出Arthas
+
+`exit/quit`命令只是退出当前session，arthas server还在目标进程中运行。
+
+想完全退出Arthas，可以执行 `shutdown` 命令。
 
 
 
@@ -942,6 +932,3 @@ java -jar arthas-boot.jar --telnet-port 9999 --http-port -1
 ```
 java -jar arthas-boot.jar -v
 ```
-
-
-  
