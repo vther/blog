@@ -239,10 +239,10 @@ $ ognl '#value1=@System@getProperty("java.home"), #value2=@System@getProperty("j
 
 ### 现象
 
-目前，访问 <http://localhost/user/0> ，会返回500异常：
+目前，访问 <http://localhost:8080/user/0> ，会返回500异常：
 
 ```
-curl http://localhost/user/0
+curl http://localhost:8080/user/0
 {"timestamp":1550223186170,"status":500,"error":"Internal Server Error","exception":"java.lang.IllegalArgumentException","message":"id < 1","path":"/user/0"}
 ```
 
@@ -259,7 +259,7 @@ watch com.example.demo.arthas.user.UserController * '{params, throwExp}'
 1. 第一个参数是类名，支持通配
 2. 第二个参数是函数名，支持通配
 
-访问 `curl http://localhost/user/0` ,`watch`命令会打印调用的参数和异常
+访问 `curl http://localhost:8080/user/0` ,`watch`命令会打印调用的参数和异常
 
 ```bash
 $ watch com.example.demo.arthas.user.UserController * '{params, throwExp}'
@@ -312,9 +312,9 @@ watch com.example.demo.arthas.user.UserController * '{params[0], target, returnO
 watch com.example.demo.arthas.user.UserController * returnObj 'params[0] > 100'
 ```
 
-当访问 <https://2886795302-80-cykoria03.environments.katacoda.com/user/1>时，`watch`命令没有输出
+当访问 <http://localhost:8080/user/1>时，`watch`命令没有输出
 
-当访问 <https://2886795302-80-cykoria03.environments.katacoda.com/user/101>时，`watch`会打印出结果。
+当访问 <http://localhost:8080/user/101>时，`watch`会打印出结果。
 
 ```bash
 $ watch com.example.demo.arthas.user.UserController * returnObj 'params[0] > 100'
@@ -348,10 +348,10 @@ watch com.example.demo.arthas.user.UserController * '{params, returnObj}' '#cost
 
 下面介绍通过`jad`/`mc`/`redefine` 命令实现动态更新代码的功能。
 
-目前，访问 <http://localhost/user/0> ，会返回500异常：
+目前，访问 <http://localhost:8080/user/0> ，会返回500异常：
 
 ```
-curl http://localhost/user/0
+curl http://localhost:8080/user/0
 {"timestamp":1550223186170,"status":500,"error":"Internal Server Error","exception":"java.lang.IllegalArgumentException","message":"id < 1","path":"/user/0"}
 ```
 
@@ -419,7 +419,7 @@ redefine success, size: 1
 
 ### 热修改代码结果
 
-`redefine`成功之后，再次访问 <https://2886795302-80-cykoria03.environments.katacoda.com/user/0> ，结果是：
+`redefine`成功之后，再次访问 <http://localhost:8080/user/0> ，结果是：
 
 ```
 {
@@ -560,7 +560,7 @@ classloader -c 1be6f5c3 -r log4j.properties
 tt -t org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter invokeHandlerMethod
 ```
 
-访问：<https://2886795302-80-cykoria03.environments.katacoda.com/user/1>
+访问：<http://localhost:8080/user/1>
 
 可以看到`tt`命令捕获到了一个请求：
 
@@ -608,7 +608,7 @@ bash $ tt -i 1000 -w 'target.getApplicationContext().getBean("helloWorldService"
 
 在这个案例里，展示排查HTTP 401问题的技巧。
 
-访问： <https://2886795302-80-cykoria03.environments.katacoda.com/admin>
+访问： <http://localhost:8080/admin>
 
 结果是：
 
@@ -626,7 +626,7 @@ Something went wrong: 401 Unauthorized
 trace javax.servlet.Filter *
 ```
 
-访问： <https://2886795302-80-cykoria03.environments.katacoda.com/admin>
+访问： <http://localhost:8080/admin>
 
 可以在调用树的最深层，找到`AdminFilterConfig$AdminFilter`返回了`401`：
 
@@ -646,7 +646,7 @@ trace javax.servlet.Filter *
 stack javax.servlet.http.HttpServletResponse sendError 'params[0]==401'
 ```
 
-访问： <https://2886795302-80-cykoria03.environments.katacoda.com/admin>
+访问： <http://localhost:8080/admin>
 
 ```bash
 $ stack javax.servlet.http.HttpServletResponse sendError 'params[0]==401'
@@ -665,7 +665,7 @@ ts=2019-02-15 16:44:06;thread_name=http-nio-8080-exec-6;id=16;is_daemon=true;pri
 
 在这个案例里，展示排查HTTP 404问题的技巧。
 
-访问： <https://2886795302-80-cykoria03.environments.katacoda.com/a.txt>
+访问： <http://localhost:8080/a.txt>
 
 结果是：
 
@@ -683,7 +683,7 @@ Something went wrong: 404 Not Found
 trace javax.servlet.Servlet * > /tmp/servlet.txt
 ```
 
-访问： <https://2886795302-80-cykoria03.environments.katacoda.com/a.txt>
+访问： <http://localhost:8080/a.txt>
 
 在`Terminal 3`里，查看`/tmp/servlet.txt`的内容：
 
@@ -703,7 +703,7 @@ less /tmp/servlet.txt
 
 下面介绍`classloader`命令的功能。
 
-先访问一个jsp网页，触发jsp的加载： <https://2886795302-80-cykoria03.environments.katacoda.com/hello>
+先访问一个jsp网页，触发jsp的加载： <http://localhost:8080/hello>
 
 ### 列出所有ClassLoader
 
